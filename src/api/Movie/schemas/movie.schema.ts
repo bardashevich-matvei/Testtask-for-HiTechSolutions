@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { Genre } from 'src/api/Genre/schemas/genre.schema';
 
 export type MovieDocument = Movie & Document;
 
@@ -17,7 +18,7 @@ export class Movie {
   releaseDate: Date;
 
   @Prop()
-  Genre: string;
+  Genre: Array<Genre>;
 }
 
 export const MovieSchema = SchemaFactory.createForClass(Movie);
