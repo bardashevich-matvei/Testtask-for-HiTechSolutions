@@ -1,23 +1,39 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { Genre } from 'src/api/Genre/schemas/genre.schema';
+import { v4 as uuidv4 } from 'uuid';
 
 export type MovieDocument = Movie & Document;
 
 @Schema()
 export class Movie {
   @Prop({
-    unique: true
+    type: String,
+    default: function genUUID() {
+      return uuidv4();
+    }
+  })
+  _id: string;
+
+  @Prop({
+    unique: true,
+    require: true
   })
   title: string;
 
-  @Prop()
+  @Prop({
+    require: true
+  })
   description: string;
 
-  @Prop()
+  @Prop({
+    require: true
+  })
   releaseDate: Date;
 
-  @Prop()
+  @Prop({
+    require: true
+  })
   Genre: Array<Genre>;
 }
 

@@ -29,7 +29,7 @@ export class MovieController {
 	}
 
 	@Delete(':id')
-	async delete(@Param() id: string): Promise<Movie> {
+	async delete(@Param('id') id: string): Promise<Movie> {
 		return this.movieService.delete(id);
 	}
 }
