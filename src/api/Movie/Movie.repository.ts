@@ -12,10 +12,22 @@ export class MovieRepository {
 
     async create(movie: Movie): Promise<Movie> {
         const savedMovie = new this.movieModel(movie);
-        return await savedMovie.save();
+        return savedMovie.save();
     }
 
-    async findOne(selector: any): Promise<Movie> {
-        return await(new Movie());
+    async findAll(): Promise<Movie[]> {
+        return this.movieModel.find().exec();
+    }
+
+    async update(id: string, movie: Movie): Promise<Movie> {
+        const updatedMovie = 
+            await this.movieModel.findByIdAndUpdate({_id: id}, movie).exec();
+        return updatedMovie;
+    }
+
+    async delete(id: string): Promise<Movie> {
+        const updatedMovie = 
+            await this.movieModel.findByIdAndRemove({_id: id}).exec();
+        return updatedMovie;
     }
 }

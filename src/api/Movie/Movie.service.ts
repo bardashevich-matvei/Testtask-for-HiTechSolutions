@@ -12,7 +12,15 @@ export class MovieService {
 		return this.movieRepository.create(movie);
 	}
 
-	async findOne(selector: Movie): Promise<Movie> {
-		return this.movieRepository.findOne(selector);
+	async findAll(): Promise<Movie[]> {
+		return this.movieRepository.findAll();
+	}
+
+	async update(id: string, movie: Movie): Promise<Movie> {
+		return this.movieRepository.update(id, movie);
+	}
+
+	async delete(id: string): Promise<Movie> {
+		return this.movieRepository.delete(id);
 	}
 }
