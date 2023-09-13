@@ -1,15 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { Movie } from './schemas/movie.schema';
 import { MovieRepository } from './movie.repository';
+import { GenreRepository } from '../Genre/genre.repository';
 
 @Injectable()
 export class MovieService {
-	constructor(private readonly movieRepository: MovieRepository
+	constructor(
+		private readonly movieRepository: MovieRepository,
+		private readonly genreRepository: GenreRepository
 	) {}
 	
 
 	async create(movie: Movie): Promise<Movie> {
-		return this.movieRepository.create(movie);
+		try {
+			const genres = (await this.genreRepository.findAll()).map((item) => item.name);
+			movie.genres.forEach((item) => {
+				if (!genres.includes(item)) {
+					throw(`bad request! genre ${item} does not exist!`)
+				}
+			})
+			return this.movieRepository.create(movie);
+		} catch (error) {
+			throw(error);
+		}
 	}
 
 	async findAll(): Promise<Movie[]> {
@@ -17,7 +30,19 @@ export class MovieService {
 	}
 
 	async update(id: string, movie: Movie): Promise<Movie> {
-		return this.movieRepository.update(id, movie);
+		try {
+			if (movie.genres.length) {
+				const genres = (await this.genreRepository.findAll()).map((item) => item.name);
+				movie.genres.forEach((item) => {
+					if (!genres.includes(item)) {
+						throw(`bad request! genre ${item} does not exist!`)
+					}
+				})
+			}
+			return this.movieRepository.update(id, movie);
+		} catch (error) {
+			throw(error);
+		}
 	}
 
 	async delete(id: string): Promise<Movie> {

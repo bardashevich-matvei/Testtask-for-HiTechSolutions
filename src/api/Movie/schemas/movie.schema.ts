@@ -34,7 +34,7 @@ export class Movie {
   @Prop({
     require: true
   })
-  Genre: Array<Genre>;
+  genres: Array<string>;
 }
 
 export const MovieSchema = SchemaFactory.createForClass(Movie);
