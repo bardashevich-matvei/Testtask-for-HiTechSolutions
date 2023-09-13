@@ -11,7 +11,6 @@ export class CreateMovieRequestDto {
     @IsNotEmpty()
     @Transform( ({ value }) => new Date(value))
     @IsDate()
-    @MinDate(new Date())
     releaseDate: Date;
 
     @IsArray()

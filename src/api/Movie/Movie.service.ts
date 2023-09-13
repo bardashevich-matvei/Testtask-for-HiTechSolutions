@@ -15,18 +15,15 @@ export class MovieService {
 	) {}
 	
 
-	async create(movie: CreateMovieRequestDto): Promise<MovieResponseDto> {
-		try {
-			const genres = (await this.genreRepository.findAll()).map((item) => item.name);
-			movie.genres.forEach((item) => {
-				if (!genres.includes(item)) {
-					throw(`bad request! genre ${item} does not exist!`)
-				}
-			})
-			return this.movieRepository.create(movie);
-		} catch (error) {
-			throw(error);
-		}
+	async create(movie: CreateMovieRequestDto): Promise<MovieResponseDto> {	
+		const genres = (await this.genreRepository.findAll()).map((item) => item.name);
+		movie.genres.forEach((item) => {
+			if (!genres.includes(item)) {
+				throw(`bad request! genre ${item} does not exist!`)
+			}
+		})
+		return this.movieRepository.create(movie);
+	
 	}
 
 	async findAll(limit?: number, offset?: number): Promise<MovieResponseDto[]> {
