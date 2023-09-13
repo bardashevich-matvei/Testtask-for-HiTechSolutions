@@ -12,10 +12,16 @@ export class GenreRepository {
 
     async create(genre: Genre): Promise<Genre> {
         const savedGenre = new this.genreModel(genre);
-        return await savedGenre.save();
+        return savedGenre.save();
     }
 
-    async findOne(selector: any): Promise<Genre> {
-        return await(new Genre());
+    async findAll(): Promise<Genre[]> {
+        return this.genreModel.find().exec();
+    }
+
+    async delete(id: string): Promise<Genre> {
+        const updatedGenre = 
+            await this.genreModel.findByIdAndRemove({_id: id}).exec();
+        return updatedGenre;
     }
 }

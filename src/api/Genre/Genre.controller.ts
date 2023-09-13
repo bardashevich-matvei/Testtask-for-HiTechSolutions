@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get, Delete, Param } from '@nestjs/common';
 import { Genre } from './schemas/genre.schema';
 import { GenreService } from './genre.service';
 
@@ -12,6 +12,16 @@ export class GenreController {
 	async create(
 		@Body() genre: Genre
 	): Promise<Genre> {
-		return await this.genreService.create(genre);
+		return this.genreService.create(genre);
+	}
+
+    @Get()
+	async find(): Promise<Genre[]> {
+		return this.genreService.findAll();
+	}
+
+	@Delete(':id')
+	async delete(@Param('id') id: string): Promise<Genre> {
+		return this.genreService.delete(id);
 	}
 }

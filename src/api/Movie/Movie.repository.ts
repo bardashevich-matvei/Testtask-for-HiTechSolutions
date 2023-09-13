@@ -30,4 +30,10 @@ export class MovieRepository {
             await this.movieModel.findByIdAndRemove({_id: id}).exec();
         return updatedMovie;
     }
+
+    async find(selector: any): Promise<Movie[]> {
+        const updatedMovie = 
+            await this.movieModel.find(selector).exec();
+        return updatedMovie;
+    }
 }

@@ -6,13 +6,16 @@ import { GenreRepository } from './genre.repository';
 export class GenreService {
 	constructor(private readonly genreRepository: GenreRepository
 	) {}
-	
 
 	async create(genre: Genre): Promise<Genre> {
 		return this.genreRepository.create(genre);
 	}
 
-	async findOne(selector: Genre): Promise<Genre> {
-		return this.genreRepository.findOne(selector);
+	async findAll(): Promise<Genre[]> {
+		return this.genreRepository.findAll();
+	}
+
+	async delete(id: string): Promise<Genre> {
+		return this.genreRepository.delete(id);
 	}
 }

@@ -32,4 +32,11 @@ export class MovieController {
 	async delete(@Param('id') id: string): Promise<Movie> {
 		return this.movieService.delete(id);
 	}
+
+	@Post('/search')
+	async search(
+		@Body() selector: any
+	): Promise<Movie[]> {
+		return this.movieService.find(selector);
+	}
 }
