@@ -1,5 +1,4 @@
-import { StringFilter } from "@dto/search/StringFilter.dto";
-import { SearchRequest } from "@dto/search/searchRequst.dto";
+import { SearchRequest } from "@dto/search/SearchRequest.dto";
 import { FilterQuery, QueryOptions } from "mongoose";
 
 const requestForbidenChar = '()+[*'

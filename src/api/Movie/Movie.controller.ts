@@ -1,7 +1,10 @@
 import { Controller, Get, Req, Post, Body, Param, Delete, Patch, Query } from '@nestjs/common';
 import { Movie } from './schemas/movie.schema';
 import { MovieService } from './movie.service';
-import { SearchRequest } from '@dto/search/searchRequst.dto';
+import { SearchRequest } from '@dto/search/SearchRequest.dto';
+import { CreateMovieRequestDto } from '@dto/movie/Requests/create-movie-request.dto';
+import { UpdateMovieRequestDto } from '@dto/movie/Requests/update-movie-request.dto';
+import { MovieResponseDto } from '@dto/movie/Responses/movie-response.dto';
 
 @Controller('movies')
 export class MovieController {
@@ -11,16 +14,16 @@ export class MovieController {
 
 	@Post()
 	async create(
-		@Body() movie: Movie
-	): Promise<Movie> {
+		@Body() movie: CreateMovieRequestDto
+	): Promise<MovieResponseDto> {
 		return this.movieService.create(movie);
 	}
 
     @Patch(':id')
 	async update(
-		@Body() movie: Movie,
+		@Body() movie: UpdateMovieRequestDto,
         @Param('id') id: string
-	): Promise<Movie> {
+	): Promise<MovieResponseDto> {
 		return this.movieService.update(id, movie);
 	}
 
@@ -28,19 +31,19 @@ export class MovieController {
 	async find(
 		@Query('limit') limit?: number,
 		@Query('offset') offset?: number,
-	): Promise<Movie[]> {
+	): Promise<MovieResponseDto[]> {
 		return this.movieService.findAll(limit, offset);
 	}
 
 	@Delete(':id')
-	async delete(@Param('id') id: string): Promise<Movie> {
+	async delete(@Param('id') id: string): Promise<MovieResponseDto> {
 		return this.movieService.delete(id);
 	}
 
 	@Post('/search')
 	async search(
 		@Body() selector: SearchRequest
-	): Promise<Movie[]> {
+	): Promise<MovieResponseDto[]> {
 		return this.movieService.search(selector);
 	}
 }

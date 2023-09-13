@@ -2,7 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { Movie } from './schemas/movie.schema';
 import { MovieRepository } from './movie.repository';
 import { GenreRepository } from '../Genre/genre.repository';
-import { SearchRequest } from '@dto/search/searchRequst.dto';
+import { SearchRequest } from '@dto/search/SearchRequest.dto';
+import { CreateMovieRequestDto } from '@dto/movie/Requests/create-movie-request.dto';
+import { UpdateMovieRequestDto } from '@dto/movie/Requests/update-movie-request.dto';
+import { MovieResponseDto } from '@dto/movie/Responses/movie-response.dto';
 
 @Injectable()
 export class MovieService {
@@ -12,7 +15,7 @@ export class MovieService {
 	) {}
 	
 
-	async create(movie: Movie): Promise<Movie> {
+	async create(movie: CreateMovieRequestDto): Promise<MovieResponseDto> {
 		try {
 			const genres = (await this.genreRepository.findAll()).map((item) => item.name);
 			movie.genres.forEach((item) => {
@@ -26,11 +29,11 @@ export class MovieService {
 		}
 	}
 
-	async findAll(limit?: number, offset?: number): Promise<Movie[]> {
+	async findAll(limit?: number, offset?: number): Promise<MovieResponseDto[]> {
 		return this.movieRepository.findAll(limit, offset);
 	}
 
-	async update(id: string, movie: Movie): Promise<Movie> {
+	async update(id: string, movie: UpdateMovieRequestDto): Promise<MovieResponseDto> {
 		try {
 			if (movie.genres.length) {
 				const genres = (await this.genreRepository.findAll()).map((item) => item.name);
@@ -46,11 +49,11 @@ export class MovieService {
 		}
 	}
 
-	async delete(id: string): Promise<Movie> {
+	async delete(id: string): Promise<MovieResponseDto> {
 		return this.movieRepository.delete(id);
 	}
 
-	async search(selector: SearchRequest): Promise<Movie[]> {
+	async search(selector: SearchRequest): Promise<MovieResponseDto[]> {
 		return this.movieRepository.search(selector);
 	}
 }
