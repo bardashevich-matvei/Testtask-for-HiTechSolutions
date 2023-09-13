@@ -1,6 +1,7 @@
-import { Controller, Get, Req, Post, Body, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Req, Post, Body, Param, Delete, Patch, Query } from '@nestjs/common';
 import { Movie } from './schemas/movie.schema';
 import { MovieService } from './movie.service';
+import { SearchRequest } from '@dto/search/searchRequst.dto';
 
 @Controller('movies')
 export class MovieController {
@@ -15,17 +16,20 @@ export class MovieController {
 		return this.movieService.create(movie);
 	}
 
-    @Post(':id')
+    @Patch(':id')
 	async update(
 		@Body() movie: Movie,
-        @Param() id: string
+        @Param('id') id: string
 	): Promise<Movie> {
 		return this.movieService.update(id, movie);
 	}
 
     @Get()
-	async find(): Promise<Movie[]> {
-		return this.movieService.findAll();
+	async find(
+		@Query('limit') limit?: number,
+		@Query('offset') offset?: number,
+	): Promise<Movie[]> {
+		return this.movieService.findAll(limit, offset);
 	}
 
 	@Delete(':id')
@@ -35,8 +39,8 @@ export class MovieController {
 
 	@Post('/search')
 	async search(
-		@Body() selector: any
+		@Body() selector: SearchRequest
 	): Promise<Movie[]> {
-		return this.movieService.find(selector);
+		return this.movieService.search(selector);
 	}
 }

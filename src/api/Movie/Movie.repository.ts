@@ -2,6 +2,8 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Movie } from "./schemas/movie.schema";
 import { Model } from "mongoose";
+import { SearchRequest } from "@dto/search/searchRequst.dto";
+import { mapSearchRequestForMongo } from "@app/utils/mongo-search.utils";
 
 @Injectable()
 export class MovieRepository {
@@ -15,25 +17,24 @@ export class MovieRepository {
         return savedMovie.save();
     }
 
-    async findAll(): Promise<Movie[]> {
-        return this.movieModel.find().exec();
+    async findAll(limit?: number, offset?: number): Promise<Movie[]> {
+        const selector: SearchRequest = { limit: limit, offset: offset };
+        const { filterQuery, queryOptions } = mapSearchRequestForMongo(selector);
+
+        return this.movieModel.find(filterQuery, null, queryOptions).lean().exec();
     }
 
     async update(id: string, movie: Movie): Promise<Movie> {
-        const updatedMovie = 
-            await this.movieModel.findByIdAndUpdate({_id: id}, movie).exec();
-        return updatedMovie;
+        return await this.movieModel.findByIdAndUpdate({_id: id}, movie).exec();
     }
 
     async delete(id: string): Promise<Movie> {
-        const updatedMovie = 
-            await this.movieModel.findByIdAndRemove({_id: id}).exec();
-        return updatedMovie;
+        return this.movieModel.findByIdAndRemove({_id: id}).exec();
     }
 
-    async find(selector: any): Promise<Movie[]> {
-        const updatedMovie = 
-            await this.movieModel.find(selector).exec();
-        return updatedMovie;
+    async search(selector: SearchRequest): Promise<Movie[]> {
+        const { filterQuery, queryOptions } = mapSearchRequestForMongo(selector);
+
+        return this.movieModel.find(filterQuery, null, queryOptions).lean().exec();
     }
 }

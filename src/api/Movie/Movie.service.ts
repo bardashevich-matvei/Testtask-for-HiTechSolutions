@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Movie } from './schemas/movie.schema';
 import { MovieRepository } from './movie.repository';
 import { GenreRepository } from '../Genre/genre.repository';
+import { SearchRequest } from '@dto/search/searchRequst.dto';
 
 @Injectable()
 export class MovieService {
@@ -25,8 +26,8 @@ export class MovieService {
 		}
 	}
 
-	async findAll(): Promise<Movie[]> {
-		return this.movieRepository.findAll();
+	async findAll(limit?: number, offset?: number): Promise<Movie[]> {
+		return this.movieRepository.findAll(limit, offset);
 	}
 
 	async update(id: string, movie: Movie): Promise<Movie> {
@@ -49,7 +50,7 @@ export class MovieService {
 		return this.movieRepository.delete(id);
 	}
 
-	async find(selector: any): Promise<Movie[]> {
-		return this.movieRepository.find(selector);
+	async search(selector: SearchRequest): Promise<Movie[]> {
+		return this.movieRepository.search(selector);
 	}
 }
