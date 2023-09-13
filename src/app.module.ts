@@ -1,7 +1,8 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MovieModule } from './api/Movie/Movie.module';
 import { GenreModule } from './api/Genre/Genre.module';
+import { AppLoggerMiddleware } from './utils/logger.utils';
 
 @Module({
   imports: [
@@ -11,4 +12,10 @@ import { GenreModule } from './api/Genre/Genre.module';
   ],
   providers: [],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(AppLoggerMiddleware)
+      .forRoutes({ path: '*', method: RequestMethod.ALL });
+  }
+}

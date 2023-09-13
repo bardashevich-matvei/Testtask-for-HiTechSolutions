@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { createDefaultGenres } from 'migrations/genres';
+import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
   createDefaultGenres();
