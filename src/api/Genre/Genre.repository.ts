@@ -14,16 +14,20 @@ export class GenreRepository {
 
   async create(genre: CreateGenreRequestDto): Promise<GenreResponseDto> {
     const savedGenre = new this.genreModel(genre);
-    return new GenreResponseDto(await savedGenre.save());
+    await savedGenre.save();
+    return new GenreResponseDto(savedGenre.toObject());
   }
 
   async findAll(): Promise<GenreResponseDto[]> {
-    return (await this.genreModel.find().lean().exec()).map((item) => new GenreResponseDto(item));
+    return (await this.genreModel.find().lean().exec()).map(
+      (item) => new GenreResponseDto(item),
+    );
   }
 
   async delete(id: string): Promise<GenreResponseDto> {
     const updatedGenre = await this.genreModel
-      .findByIdAndRemove({ _id: id })
+      .findByIdAndRemove(id)
+      .lean()
       .exec();
     return new GenreResponseDto(updatedGenre);
   }

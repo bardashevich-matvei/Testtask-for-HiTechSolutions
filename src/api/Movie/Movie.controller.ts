@@ -17,7 +17,7 @@ import { CreateMovieRequestDto } from '@dto/movie/Requests/create-movie-request.
 import { UpdateMovieRequestDto } from '@dto/movie/Requests/update-movie-request.dto';
 import { MovieResponseDto } from '@dto/movie/Responses/movie-response.dto';
 
-@Controller('api/movies')
+@Controller('movies')
 @UseInterceptors(ClassSerializerInterceptor)
 @SerializeOptions({ excludeExtraneousValues: true })
 export class MovieController {

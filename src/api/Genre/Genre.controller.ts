@@ -1,9 +1,19 @@
-import { Controller, Post, Body, Get, Delete, Param, SerializeOptions, UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Delete,
+  Param,
+  SerializeOptions,
+  UseInterceptors,
+  ClassSerializerInterceptor,
+} from '@nestjs/common';
 import { GenreService } from './genre.service';
 import { CreateGenreRequestDto } from '@dto/genre/Requests/create-genre-request.dto';
 import { GenreResponseDto } from '@dto/genre/Responses/genre-response.dto';
 
-@Controller('api/genres')
+@Controller('genres')
 @UseInterceptors(ClassSerializerInterceptor)
 @SerializeOptions({ excludeExtraneousValues: true })
 export class GenreController {

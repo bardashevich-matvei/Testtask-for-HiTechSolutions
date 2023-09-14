@@ -17,31 +17,43 @@ export class MovieRepository {
 
   async create(movie: CreateMovieRequestDto): Promise<MovieResponseDto> {
     const savedMovie = new this.movieModel(movie);
-    return new MovieResponseDto(await savedMovie.save());
+    await savedMovie.save();
+    return new MovieResponseDto(savedMovie.toObject());
   }
 
   async findAll(limit?: number, offset?: number): Promise<MovieResponseDto[]> {
     const selector: SearchRequest = { limit: limit, offset: offset };
     const { filterQuery, queryOptions } = mapSearchRequestForMongo(selector);
 
-    return (await this.movieModel.find(filterQuery, null, queryOptions).lean().exec()).map((item) => new MovieResponseDto(item));
+    return (
+      await this.movieModel.find(filterQuery, null, queryOptions).lean().exec()
+    ).map((item) => new MovieResponseDto(item));
   }
 
   async update(
     id: string,
     movie: UpdateMovieRequestDto,
   ): Promise<MovieResponseDto> {
-    return this.movieModel.findByIdAndUpdate(id, movie, {new: true});
+    const updatedMovie = await this.movieModel
+      .findByIdAndUpdate(id, movie, { new: true })
+      .lean()
+      .exec();
+    return new MovieResponseDto(updatedMovie);
   }
 
   async delete(id: string): Promise<MovieResponseDto> {
-    const deletedMovie = await this.movieModel.findByIdAndRemove(id).exec();
+    const deletedMovie = await this.movieModel
+      .findByIdAndRemove(id)
+      .lean()
+      .exec();
     return new MovieResponseDto(deletedMovie);
   }
 
   async search(selector: SearchRequest): Promise<MovieResponseDto[]> {
     const { filterQuery, queryOptions } = mapSearchRequestForMongo(selector);
 
-    return (await this.movieModel.find(filterQuery, null, queryOptions).lean().exec()).map((item) => new MovieResponseDto(item));
+    return (
+      await this.movieModel.find(filterQuery, null, queryOptions).lean().exec()
+    ).map((item) => new MovieResponseDto(item));
   }
 }
