@@ -3,7 +3,7 @@ import { Expose, Transform } from 'class-transformer';
 export class GenreResponseDto {
     @Expose()
     @Transform( ({ obj }: { obj: { _id: string }}) => obj._id)
-    id?: string;
+    id: string;
 
     @Expose()
     name: string;
