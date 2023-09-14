@@ -6,7 +6,9 @@ import { GenreService } from './genre.service';
 import { GenreRepository } from './genre.repository';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: Genre.name, schema: GenreSchema }])],
+  imports: [
+    MongooseModule.forFeature([{ name: Genre.name, schema: GenreSchema }]),
+  ],
   controllers: [GenreController],
   providers: [GenreService, GenreRepository],
 })

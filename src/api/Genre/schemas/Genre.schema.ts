@@ -10,12 +10,12 @@ export class Genre {
     type: String,
     default: function genUUID() {
       return uuidv4();
-    }
+    },
   })
   _id: string;
 
   @Prop({
-    unique: true
+    unique: true,
   })
   name: string;
 }

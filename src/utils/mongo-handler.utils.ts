@@ -1,4 +1,4 @@
-import { ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus } from '@nestjs/common';
+import { ExceptionFilter, Catch, ArgumentsHost } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { MongoError } from 'mongodb';
 
@@ -11,17 +11,16 @@ export class MongoExceptionFilter implements ExceptionFilter {
     let status = 500;
     const message = exception.message;
 
-    if (exception.code === 11000) { // duplicate key error
+    if (exception.code === 11000) {
+      // duplicate key error
       status = 400;
     }
 
-    response
-      .status(status)
-      .json({
-        message,
-        timestamp: new Date().toISOString(),
-        path: request.url,
-        method: request.method,
-      });
+    response.status(status).json({
+      message,
+      timestamp: new Date().toISOString(),
+      path: request.url,
+      method: request.method,
+    });
   }
 }

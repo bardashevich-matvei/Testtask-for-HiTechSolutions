@@ -5,7 +5,6 @@ import { MovieController } from './movie.controller';
 import { MovieService } from './movie.service';
 import { MovieRepository } from './movie.repository';
 import { GenreRepository } from '../Genre/genre.repository';
-import { GenreModule } from '../Genre/Genre.module';
 import { Genre, GenreSchema } from '../Genre/schemas/genre.schema';
 
 @Module({
@@ -13,7 +12,8 @@ import { Genre, GenreSchema } from '../Genre/schemas/genre.schema';
     MongooseModule.forFeature([
       { name: Movie.name, schema: MovieSchema },
       { name: Genre.name, schema: GenreSchema },
-    ])],
+    ]),
+  ],
   controllers: [MovieController],
   providers: [MovieService, MovieRepository, GenreRepository],
 })
