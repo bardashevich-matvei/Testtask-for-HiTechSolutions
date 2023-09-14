@@ -5,6 +5,8 @@ import { SearchRequest } from '@dto/search/SearchRequest.dto';
 import { CreateMovieRequestDto } from '@dto/movie/Requests/create-movie-request.dto';
 import { UpdateMovieRequestDto } from '@dto/movie/Requests/update-movie-request.dto';
 import { MovieResponseDto } from '@dto/movie/Responses/movie-response.dto';
+import { checkGenres } from '@app/utils/check-genres.utils';
+import { Movie } from './schemas/movie.schema';
 
 @Injectable()
 export class MovieService {
@@ -17,11 +19,9 @@ export class MovieService {
     const genres = (await this.genreRepository.findAll()).map(
       (item) => item.name,
     );
-    movie.genres.forEach((item) => {
-      if (!genres.includes(item)) {
-        throw `bad request! genre ${item} does not exist!`;
-      }
-    });
+
+    checkGenres(movie as Movie, genres);
+
     return this.movieRepository.create(movie);
   }
 
@@ -33,21 +33,13 @@ export class MovieService {
     id: string,
     movie: UpdateMovieRequestDto,
   ): Promise<MovieResponseDto> {
-    try {
-      if (movie.genres.length) {
-        const genres = (await this.genreRepository.findAll()).map(
-          (item) => item.name,
-        );
-        movie.genres.forEach((item) => {
-          if (!genres.includes(item)) {
-            throw `bad request! genre ${item} does not exist!`;
-          }
-        });
-      }
-      return this.movieRepository.update(id, movie);
-    } catch (error) {
-      throw error;
+    if (movie.genres.length) {
+      const genres = (await this.genreRepository.findAll()).map(
+        (item) => item.name,
+      );
+      checkGenres(movie as Movie, genres);
     }
+    return this.movieRepository.update(id, movie);
   }
 
   async delete(id: string): Promise<MovieResponseDto> {
