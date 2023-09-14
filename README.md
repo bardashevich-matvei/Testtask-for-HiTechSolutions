@@ -1,6 +1,6 @@
 ## Application functionalities
 
-In application realized API functional for Movies and Genres manipulation. As a main storage used MongoDB. Fpr the start of working with application you just follow the steps below
+In application realized API functional for Movies and Genres manipulation. As a main storage used MongoDB. For the start of working with application you just follow the steps below
 
 ## Installation
 
