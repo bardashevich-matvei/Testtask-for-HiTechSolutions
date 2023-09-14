@@ -31,7 +31,7 @@ export function mapSearchRequestForMongo(searchModel: SearchRequest) {
 
   if (searchModel.sortField) {
     queryOptions.sort = {
-      [searchModel.sortField]: !searchModel.descending ? 1 : -1,
+      [searchModel.sortField]: !searchModel.descending ? -1 : 1,
     };
   }
 
@@ -53,7 +53,6 @@ export function mapSearchRequestForMongo(searchModel: SearchRequest) {
             if (item.exactMatch) {
               return value;
             }
-            console.log(new RegExp(normalizeSearchRegExp(value), 'i'))
             return new RegExp(normalizeSearchRegExp(value), 'i');
           }),
         },

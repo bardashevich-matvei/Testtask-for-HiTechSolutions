@@ -1,5 +1,4 @@
-import { IsBoolean,  IsString, IsArray, IsEnum, IsOptional } from 'class-validator';
-import { Operation } from './Operation.enum';
+import { IsBoolean,  IsString, IsArray} from 'class-validator';
 
 export class StringFilter {
     @IsString()
