@@ -13,15 +13,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/api/genres/",
+					"raw": "localhost:3000/api/genres",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
 						"api",
-						"genres",
-						""
+						"genres"
 					]
 				}
 			},
@@ -34,7 +33,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"joke\"\r\n}",
+					"raw": "{\r\n    \"name\": \"new\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -71,7 +70,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/api/genres/a7f84438-1b37-4efb-86f0-825b2db58203",
+					"raw": "localhost:3000/api/genres/43915d29-528a-4b90-9a48-3d08626906c2",
 					"host": [
 						"localhost"
 					],
@@ -79,7 +78,7 @@
 					"path": [
 						"api",
 						"genres",
-						"a7f84438-1b37-4efb-86f0-825b2db58203"
+						"43915d29-528a-4b90-9a48-3d08626906c2"
 					]
 				}
 			},

@@ -13,7 +13,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/api/movies?limit=5&offset=0",
+					"raw": "localhost:3000/api/movies?limit=3&offset=1",
 					"host": [
 						"localhost"
 					],
@@ -25,11 +25,11 @@
 					"query": [
 						{
 							"key": "limit",
-							"value": "5"
+							"value": "3"
 						},
 						{
 							"key": "offset",
-							"value": "0"
+							"value": "1"
 						}
 					]
 				}
@@ -43,7 +43,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"testmovie2\",\r\n    \"Description\": \"bla bla bla\",\r\n    \"releaseDate\": \"\",\r\n    \"genres\": [\"horror\"]\r\n}",
+					"raw": "{\r\n    \"title\": \"testmo331316434333444114441viasdasdasd\",\r\n    \"description\": \"bla bla bla\",\r\n    \"releaseDate\": \"2023-09-13T23:09:19.303Z\",\r\n    \"genres\": [\"horror\", \"comedy\"]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -71,7 +71,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/api/movies/146c34be-12df-45fb-84fc-53a594972be1",
+					"raw": "localhost:3000/api/movies/21f63f55-96cf-4126-b814-9455eac35b90",
 					"host": [
 						"localhost"
 					],
@@ -79,7 +79,7 @@
 					"path": [
 						"api",
 						"movies",
-						"146c34be-12df-45fb-84fc-53a594972be1"
+						"21f63f55-96cf-4126-b814-9455eac35b90"
 					]
 				}
 			},
@@ -92,7 +92,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"limit\": 1\r\n}",
+					"raw": "{\r\n    \"limit\": 22,\r\n    \"sortField\": \"title\",\r\n    \"descending\": false,\r\n    \"stringFilters\": [{\r\n        \"fieldName\": \"title\",\r\n        \"exactMatch\": false,\r\n        \"values\": [\"test\"]\r\n    },\r\n    {\r\n        \"fieldName\": \"description\",\r\n        \"exactMatch\": false,\r\n        \"values\": [\"bla\"]\r\n    }]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -129,7 +129,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/api/movies/6e679a8e-2339-4e0c-a2ca-4996c19d0173",
+					"raw": "localhost:3000/api/movies/146c34be-12df-45fb-84fc-53a594972be1",
 					"host": [
 						"localhost"
 					],
@@ -137,7 +137,7 @@
 					"path": [
 						"api",
 						"movies",
-						"6e679a8e-2339-4e0c-a2ca-4996c19d0173"
+						"146c34be-12df-45fb-84fc-53a594972be1"
 					]
 				}
 			},
