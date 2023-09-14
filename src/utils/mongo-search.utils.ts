@@ -1,12 +1,11 @@
-import { Operation } from '@dto/search/Operation.enum';
 import { SearchRequest } from '@dto/search/SearchRequest.dto';
 import { FilterQuery, QueryOptions } from 'mongoose';
 
 const requestForbidenChar = '()+[*';
 const OPERATIONS = {
   and: '$and',
-  or: '$or'
-}
+  or: '$or',
+};
 
 const normalizeSearchRegExp = (value: string) => {
   return value
@@ -45,7 +44,6 @@ export function mapSearchRequestForMongo(searchModel: SearchRequest) {
       operation = OPERATIONS[searchModel.operation];
     }
     searchModel.stringFilters.forEach((item) => {
-
       filterQuery[operation] = filterQuery[operation] || [];
       filterQuery[operation].push({
         [item.fieldName]: {

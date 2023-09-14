@@ -1,10 +1,9 @@
-import { BadRequestException } from "@nestjs/common";
+import { BadRequestException } from '@nestjs/common';
 
 export function checkGenreDublicates(moviesGenres: string[]) {
-    const uniqueGenres = Array.from(new Set(moviesGenres));
+  const uniqueGenres = Array.from(new Set(moviesGenres));
 
-    if (uniqueGenres.length !== moviesGenres.length) {
-        throw new BadRequestException(`Duplicates found in genres!`);
-    }
-
+  if (uniqueGenres.length !== moviesGenres.length) {
+    throw new BadRequestException(`Duplicates found in genres!`);
+  }
 }
