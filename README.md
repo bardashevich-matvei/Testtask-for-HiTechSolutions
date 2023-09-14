@@ -67,7 +67,7 @@ $ npm run start
     }]
 }
 ```  
-The "operation" field determines whether the selection will be strict or not. “and” is strict, “or” is non-strict. By default the selection is non-strict
+The "operation" field determines whether the selection will be strict or not. “and” is strict, “or” is non-strict. By default the selection is non-strict. Each field is optional. By default "limit"=10, "offset"=0 and "operation"=or
 
 - GET get all movies with pagination  
   api/movies?limit=5&offset=0  
