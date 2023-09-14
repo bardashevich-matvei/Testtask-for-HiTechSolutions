@@ -12,7 +12,6 @@ export class UpdateMovieRequestDto {
 
     @Transform( ({ value }) => new Date(value))
     @IsDate()
-    @MinDate(new Date())
     @IsOptional()
     releaseDate?: Date;
 

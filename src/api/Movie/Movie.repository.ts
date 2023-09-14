@@ -31,7 +31,7 @@ export class MovieRepository {
     id: string,
     movie: UpdateMovieRequestDto,
   ): Promise<MovieResponseDto> {
-    return await this.movieModel.findByIdAndUpdate({ _id: id }, movie).exec();
+    return this.movieModel.findByIdAndUpdate(id, movie, {new: true});
   }
 
   async delete(id: string): Promise<MovieResponseDto> {
