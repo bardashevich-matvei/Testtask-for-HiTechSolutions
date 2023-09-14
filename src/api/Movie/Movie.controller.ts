@@ -14,7 +14,7 @@ import { CreateMovieRequestDto } from '@dto/movie/Requests/create-movie-request.
 import { UpdateMovieRequestDto } from '@dto/movie/Requests/update-movie-request.dto';
 import { MovieResponseDto } from '@dto/movie/Responses/movie-response.dto';
 
-@Controller('movies')
+@Controller('api/movies')
 export class MovieController {
   constructor(private readonly movieService: MovieService) {}
 

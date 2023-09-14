@@ -3,7 +3,7 @@ import { GenreService } from './genre.service';
 import { CreateGenreRequestDto } from '@dto/genre/Requests/create-genre-request.dto';
 import { GenreResponseDto } from '@dto/genre/Responses/genre-response.dto';
 
-@Controller('genres')
+@Controller('api/genres')
 export class GenreController {
   constructor(private readonly genreService: GenreService) {}
 

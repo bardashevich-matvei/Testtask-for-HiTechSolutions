@@ -13,12 +13,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/movies?limit=5&offset=0",
+					"raw": "localhost:3000/api/movies?limit=5&offset=0",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"movies"
 					],
 					"query": [
@@ -50,12 +51,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/movies/",
+					"raw": "localhost:3000/api/movies/",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"movies",
 						""
 					]
@@ -69,12 +71,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/movies/146c34be-12df-45fb-84fc-53a594972be1",
+					"raw": "localhost:3000/api/movies/146c34be-12df-45fb-84fc-53a594972be1",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"movies",
 						"146c34be-12df-45fb-84fc-53a594972be1"
 					]
@@ -97,15 +100,15 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/movies/search/",
+					"raw": "localhost:3000/api/movies/search",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"movies",
-						"search",
-						""
+						"search"
 					]
 				}
 			},
@@ -126,12 +129,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/movies/6e679a8e-2339-4e0c-a2ca-4996c19d0173",
+					"raw": "localhost:3000/api/movies/6e679a8e-2339-4e0c-a2ca-4996c19d0173",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"movies",
 						"6e679a8e-2339-4e0c-a2ca-4996c19d0173"
 					]

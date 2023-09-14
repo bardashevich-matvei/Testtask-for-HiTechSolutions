@@ -13,12 +13,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/genres/",
+					"raw": "localhost:3000/api/genres/",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"genres",
 						""
 					]
@@ -41,12 +42,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/genres/",
+					"raw": "localhost:3000/api/genres/",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"genres",
 						""
 					]
@@ -69,12 +71,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/genres/a7f84438-1b37-4efb-86f0-825b2db58203",
+					"raw": "localhost:3000/api/genres/a7f84438-1b37-4efb-86f0-825b2db58203",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"genres",
 						"a7f84438-1b37-4efb-86f0-825b2db58203"
 					]
