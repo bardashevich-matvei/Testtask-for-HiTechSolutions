@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "dc256c62-fc5f-4ac9-b2ee-c75b3891fc4d",
+		"name": "Movies",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8849640",
+		"_collection_link": "https://orange-firefly-758452.postman.co/workspace/Movies~61dfc4c2-096e-4482-b6a1-1fc95030532b/collection/8849640-dc256c62-fc5f-4ac9-b2ee-c75b3891fc4d?action=share&source=collection_link&creator=8849640"
+	},
+	"item": [
+		{
+			"name": "findAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/movies?limit=5&offset=0",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"movies"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "5"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"testmovie2\",\r\n    \"Description\": \"bla bla bla\",\r\n    \"releaseDate\": \"\",\r\n    \"genres\": [\"horror\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/movies/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/movies/146c34be-12df-45fb-84fc-53a594972be1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"movies",
+						"146c34be-12df-45fb-84fc-53a594972be1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"limit\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/movies/search/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"movies",
+						"search",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"qwe\",\r\n    \"description\": \"bla bla bla\",\r\n    \"releaseDate\": \"2023-09-13T23:09:19.303Z\",\r\n    \"genres\": [\"horror\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/movies/6e679a8e-2339-4e0c-a2ca-4996c19d0173",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"movies",
+						"6e679a8e-2339-4e0c-a2ca-4996c19d0173"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
