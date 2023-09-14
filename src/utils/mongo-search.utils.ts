@@ -1,3 +1,4 @@
+import { Operation } from '@dto/search/Operation.enum';
 import { SearchRequest } from '@dto/search/SearchRequest.dto';
 import { FilterQuery, QueryOptions } from 'mongoose';
 
@@ -34,6 +35,10 @@ export function mapSearchRequestForMongo(searchModel: SearchRequest) {
 
   if (searchModel.stringFilters) {
     searchModel.stringFilters.forEach((item) => {
+      if (!item.operation) {
+        item.operation = Operation.or;
+      }
+
       filterQuery[item.operation] = filterQuery[item.operation] || [];
       filterQuery[item.operation].push({
         [item.fieldName]: {

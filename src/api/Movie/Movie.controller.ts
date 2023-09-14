@@ -7,6 +7,9 @@ import {
   Delete,
   Patch,
   Query,
+  SerializeOptions,
+  UseInterceptors,
+  ClassSerializerInterceptor,
 } from '@nestjs/common';
 import { MovieService } from './movie.service';
 import { SearchRequest } from '@dto/search/SearchRequest.dto';
@@ -15,6 +18,8 @@ import { UpdateMovieRequestDto } from '@dto/movie/Requests/update-movie-request.
 import { MovieResponseDto } from '@dto/movie/Responses/movie-response.dto';
 
 @Controller('api/movies')
+@UseInterceptors(ClassSerializerInterceptor)
+@SerializeOptions({ excludeExtraneousValues: true })
 export class MovieController {
   constructor(private readonly movieService: MovieService) {}
 

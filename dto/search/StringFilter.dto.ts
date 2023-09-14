@@ -1,4 +1,4 @@
-import { IsBoolean,  IsString, IsArray, IsEnum } from 'class-validator';
+import { IsBoolean,  IsString, IsArray, IsEnum, IsOptional } from 'class-validator';
 import { Operation } from './Operation.enum';
 
 export class StringFilter {
@@ -13,5 +13,6 @@ export class StringFilter {
     values: Array<string>;
 
     @IsEnum(Operation)
-    operation: Operation;
+    @IsOptional()
+    operation?: Operation;
 }
