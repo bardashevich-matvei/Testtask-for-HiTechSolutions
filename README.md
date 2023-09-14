@@ -18,13 +18,13 @@ $ npm run start
 
 ## Movies API
 
-- POST create a movie  
+- POST create a movie
   api/movies
 
 - DELETE delete a movie  
   api/movies/:id
 
-- PATCH update a movie  
+- PATCH update a movie
   api/movies/:id
 
 - POST search for movies  

@@ -1,6 +1,7 @@
-import { IsOptional, ValidateNested, IsArray, IsInt, IsString, IsBoolean } from 'class-validator';
+import { IsOptional, ValidateNested, IsArray, IsInt, IsString, IsBoolean, IsEnum } from 'class-validator';
 import { Type } from 'class-transformer';
 import { StringFilter } from './StringFilter.dto';
+import { Operation } from './Operation.enum';
 
 export class SearchRequest {
     @IsArray()
@@ -24,4 +25,8 @@ export class SearchRequest {
     @IsBoolean()
     @IsOptional()
     descending?: boolean;
+
+    @IsEnum(Operation)
+    @IsOptional()
+    operation?: Operation;
 }

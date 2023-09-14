@@ -7,6 +7,7 @@ import { UpdateMovieRequestDto } from '@dto/movie/Requests/update-movie-request.
 import { MovieResponseDto } from '@dto/movie/Responses/movie-response.dto';
 import { checkGenres } from '@app/utils/check-genres.utils';
 import { Movie } from './schemas/movie.schema';
+import { checkGenreDublicates } from '@app/utils/check-genres-dublicates.utils';
 
 @Injectable()
 export class MovieService {
@@ -16,6 +17,7 @@ export class MovieService {
   ) {}
 
   async create(movie: CreateMovieRequestDto): Promise<MovieResponseDto> {
+    checkGenreDublicates(movie.genres);
     const genres = (await this.genreRepository.findAll()).map(
       (item) => item.name,
     );
@@ -33,6 +35,7 @@ export class MovieService {
     id: string,
     movie: UpdateMovieRequestDto,
   ): Promise<MovieResponseDto> {
+    checkGenreDublicates(movie.genres);
     if (movie.genres.length) {
       const genres = (await this.genreRepository.findAll()).map(
         (item) => item.name,

@@ -11,8 +11,4 @@ export class StringFilter {
     @IsArray()
     @IsString({ each: true })
     values: Array<string>;
-
-    @IsEnum(Operation)
-    @IsOptional()
-    operation?: Operation;
 }

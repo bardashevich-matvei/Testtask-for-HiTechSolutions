@@ -52,6 +52,9 @@ export class MovieRepository {
   async search(selector: SearchRequest): Promise<MovieResponseDto[]> {
     const { filterQuery, queryOptions } = mapSearchRequestForMongo(selector);
 
+    console.log(filterQuery);
+    console.log(queryOptions);
+
     return (
       await this.movieModel.find(filterQuery, null, queryOptions).lean().exec()
     ).map((item) => new MovieResponseDto(item));

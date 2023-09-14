@@ -3,6 +3,10 @@ import { SearchRequest } from '@dto/search/SearchRequest.dto';
 import { FilterQuery, QueryOptions } from 'mongoose';
 
 const requestForbidenChar = '()+[*';
+const OPERATIONS = {
+  and: '$and',
+  or: '$or'
+}
 
 const normalizeSearchRegExp = (value: string) => {
   return value
@@ -34,18 +38,22 @@ export function mapSearchRequestForMongo(searchModel: SearchRequest) {
   const filterQuery: FilterQuery<unknown> = {};
 
   if (searchModel.stringFilters) {
+    let operation: string;
+    if (!searchModel.operation) {
+      operation = OPERATIONS.or;
+    } else {
+      operation = OPERATIONS[searchModel.operation];
+    }
     searchModel.stringFilters.forEach((item) => {
-      if (!item.operation) {
-        item.operation = Operation.or;
-      }
 
-      filterQuery[item.operation] = filterQuery[item.operation] || [];
-      filterQuery[item.operation].push({
+      filterQuery[operation] = filterQuery[operation] || [];
+      filterQuery[operation].push({
         [item.fieldName]: {
           $in: item.values.map((value) => {
             if (item.exactMatch) {
               return value;
             }
+            console.log(new RegExp(normalizeSearchRegExp(value), 'i'))
             return new RegExp(normalizeSearchRegExp(value), 'i');
           }),
         },
