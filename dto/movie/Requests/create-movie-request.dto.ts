@@ -1,5 +1,5 @@
 import { Transform } from 'class-transformer';
-import { IsString, IsArray, MinDate, IsDate, IsNotEmpty } from 'class-validator';
+import { IsString, IsArray, IsDate, IsNotEmpty } from 'class-validator';
 
 export class CreateMovieRequestDto {
     @IsString()
